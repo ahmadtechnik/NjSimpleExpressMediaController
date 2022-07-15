@@ -9,7 +9,7 @@ I always had the problem of going to the computer to change the volume or change
 - enter this command `npm install`
 - install typescript globally on your machine if not already installed `npm install -g typescript`
 - now let's compile the files `tsc`, this command will extract 'dist' folder
-- to run the proram enter `node dist/main.js`
+- to run the proram enter `node dist/index.js`
 
 ### prowse
 - open any prowser you like
