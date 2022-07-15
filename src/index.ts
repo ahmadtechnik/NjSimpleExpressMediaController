@@ -7,8 +7,18 @@ const app = express()
 const port = 3001
 
 app.get('/play', (req, res) => {
-    robot.keyTap('audio_play')
-    res.send('audio_play')
+    robot.keyTap('audio_play');
+    res.send('audio_play');
+});
+
+app.get('/next', (req, res) => {
+    robot.keyTap('audio_next');
+    res.send('audio_next');
+});
+
+app.get('/prev', (req, res) => {
+    robot.keyTap('audio_prev');
+    res.send('audio_prev');
 });
 
 app.get('/v_up', async (req, res) => {
@@ -20,18 +30,18 @@ app.get('/v_up', async (req, res) => {
 app.get('/v_down', async (req, res) => {
     const volume = await loudness.getVolume();
     await loudness.setVolume(volume - 10);
-    res.send('Down ' + (volume - 10).toString())
+    res.send('Down ' + (volume - 10).toString());
 });
 
 app.get('/volume_set', async (req, res) => {
     const s: number = parseInt(req.query.v.toString());
     await loudness.setVolume(s);
     s === 0 ? loudness.setMuted(true) : (loudness.setMuted(false) && await loudness.getVolume());
-    res.send('Down ' + (s).toString())
+    res.send('Down ' + (s).toString());
 });
 
 app.use(express.static(path.join(__dirname, '/../', 'views')));
 
 app.listen(port, '0.0.0.0', () => {
-    console.log('listening port : ' + port)
+    console.log('listening port : ' + port);
 });
