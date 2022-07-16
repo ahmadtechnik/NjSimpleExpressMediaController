@@ -33,6 +33,11 @@ app.get('/v_down', async (req, res) => {
     res.send('Down ' + (volume - 10).toString());
 });
 
+app.get('/get_volume', async (req, res) => {
+    const volume = await loudness.getVolume();
+    res.send(volume.toString());
+});
+
 app.get('/volume_set', async (req, res) => {
     const s: number = parseInt(req.query.v.toString());
     await loudness.setVolume(s);

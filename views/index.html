@@ -10,13 +10,17 @@
 <div class="container h-100">
     <div class="d-flex justify-content-center align-items-center h-100">
         <div>
+            <div class="mb-2 text-light text-center d-flex justify-content-between align-items-center">
+                <h4>volume</h4>
+                <h1 id="volume_value"></h1>
+            </div>
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-primary me-2" id="prev_button">< Prev</button>
                 <button type="button" class="btn btn-primary me-2" id="toggle_button">Pause/Play</button>
                 <button type="button" class="btn btn-primary me-2" id="next_button">Next ></button>
             </div>
             <div class="mt-2">
-                <input type="range" class="form-range" id="volumeChanger" min="0" max="100" step="10">
+                <input type="range" class="form-range" id="volumeChanger" value="0" min="0" max="100" step="5">
             </div>
         </div>
     </div>

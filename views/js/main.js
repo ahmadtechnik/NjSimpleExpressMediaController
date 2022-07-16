@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    getCurrentVolume();
     $('#next_button').on('click', () => {
         $.get('/next');
     });
@@ -14,12 +15,19 @@ $(document).ready(() => {
     $('#v_down_button').on('click', () => {
         $.get('/v_down');
     });
-    $('#volumeChanger').on('input', (t) => {
-        console.log(t.target.value)
+    $('#volumeChanger').on('input change', (t) => {
+        $('#volume_value').text(t.target.value);
         $.get('/volume_set?v=' + t.target.value, {
             data: {
                 volume: t.target.value
             }
-        })
-    })
-})
+        });
+    });
+});
+
+function getCurrentVolume() {
+    $.get('/get_volume').then((d) => {
+        $('#volume_value').text(d);
+        $('#volumeChanger').val(d);
+    });
+}
