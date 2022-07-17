@@ -66,6 +66,18 @@ app.get('/press_key', async (req, res) => {
     res.end('Key ' + (key).toString());
 })
 
+app.get('/go_to_sleep', async (req, res) => {
+    setTimeout(() => {
+        robot.keyToggle('command', 'down');
+        robot.keyTap('x');
+        robot.keyToggle('command', 'up');
+
+        robot.keyTap('u');
+        robot.keyTap('s');
+    }, 500);
+    res.end('sleeping ....');
+})
+
 app.use(express.static(path.join(__dirname, '/../', 'views')));
 
 app.listen(port, host, () => {

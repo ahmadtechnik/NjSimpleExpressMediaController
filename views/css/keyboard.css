@@ -1,12 +1,18 @@
-.keyboard{
+.keyboard {
     display: flex;
     flex-wrap: nowrap;
 }
-.key-button{
-    padding: 10px;
+
+.key-button, .key-button-sleep {
+    padding: 5px;
     border-radius: 10px;
     background-color: indianred;
     color: white;
     margin-right: 5px;
     cursor: pointer;
+    font-size: 16px;
+}
+
+.key-button-sleep {
+    background-color: #7a0303;
 }

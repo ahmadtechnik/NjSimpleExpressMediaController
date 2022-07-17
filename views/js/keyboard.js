@@ -4,3 +4,9 @@ $('.key-button').on('click', (element) => {
         key
     })
 })
+
+$('.key-button-sleep').on('click', () => {
+    if (confirm('Are you sure you want to go to sleep?')) {
+        $.get('/go_to_sleep');
+    }
+});
