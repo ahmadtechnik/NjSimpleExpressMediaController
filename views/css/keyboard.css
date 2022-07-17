@@ -1,0 +1,12 @@
+.keyboard{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.key-button{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: indianred;
+    color: white;
+    margin-right: 5px;
+    cursor: pointer;
+}

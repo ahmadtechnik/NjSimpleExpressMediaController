@@ -52,6 +52,20 @@ app.get('/volume_set', async (req, res) => {
     res.send('Down ' + (s).toString());
 });
 
+app.get('/press_key', async (req, res) => {
+    const key = req.query.key
+    if (key === 'swi') {
+        robot.keyToggle('alt', 'down');
+        robot.keyTap('tab');
+        robot.keyTap('tab');
+        robot.keyToggle('alt', 'up');
+        res.end('Key ' + (key).toString());
+        return;
+    }
+    robot.keyTap(key.toString());
+    res.end('Key ' + (key).toString());
+})
+
 app.use(express.static(path.join(__dirname, '/../', 'views')));
 
 app.listen(port, host, () => {

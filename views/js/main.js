@@ -23,6 +23,12 @@ $(document).ready(() => {
             }
         });
     });
+
+    $.get('./fragments/keyboard.html', {responseType: 'html'}).then((res) => {
+        $('#response_container').prepend($('<div>').html(res));
+    }).catch((err) => {
+        console.log(err.message)
+    })
 });
 
 function getCurrentVolume() {
