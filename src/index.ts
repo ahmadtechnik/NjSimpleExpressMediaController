@@ -2,6 +2,7 @@ import * as loudness from "loudness";
 import * as robot from 'robotjs';
 import * as express from "express";
 import * as path from "path";
+import * as os from 'os';
 import { Request, Response } from 'express';
 
 /**
@@ -81,13 +82,13 @@ app.get('/prev', (req: Request, res: Response) => {
 
 /**
  * @route   GET /v_up
- * @desc    Increase system volume by 10%
+ * @desc    Increase system volume by 5%
  * @access  Public
  */
 app.get('/v_up', async (req: Request, res: Response) => {
     try {
         const currentVolume = await loudness.getVolume();
-        const newVolume = Math.min(currentVolume + 10, 100);
+        const newVolume = Math.min(currentVolume + 5, 100);
         await loudness.setVolume(newVolume);
         console.log(`Volume increased to ${newVolume}%`);
         res.status(200).json({ volume: newVolume });
@@ -99,13 +100,13 @@ app.get('/v_up', async (req: Request, res: Response) => {
 
 /**
  * @route   GET /v_down
- * @desc    Decrease system volume by 10%
+ * @desc    Decrease system volume by 5%
  * @access  Public
  */
 app.get('/v_down', async (req: Request, res: Response) => {
     try {
         const currentVolume = await loudness.getVolume();
-        const newVolume = Math.max(currentVolume - 10, 0);
+        const newVolume = Math.max(currentVolume - 5, 0);
         await loudness.setVolume(newVolume);
         console.log(`Volume decreased to ${newVolume}%`);
         res.status(200).json({ volume: newVolume });
@@ -157,6 +158,31 @@ app.get('/volume_set', async (req: Request, res: Response) => {
     }
 });
 
+function getLocalIpAddress(): string {
+    const interfaces = os.networkInterfaces();
+    for (const name of Object.keys(interfaces)) {
+        const networkInterface = interfaces[name];
+        if (!networkInterface) continue;
+        
+        for (const info of networkInterface) {
+            if (info.family === 'IPv4' && !info.internal) {
+                return info.address;
+            }
+        }
+    }
+    return 'localhost';
+}
+
+app.get('/server-info', (req: Request, res: Response) => {
+    const ipAddress = getLocalIpAddress();
+    const port = PORT;
+    res.json({ 
+        ipAddress,
+        port,
+        url: `http://${ipAddress}:${port}`
+    });
+});
+
 // Serve static files from the views directory
 const staticPath = path.resolve(process.cwd(), 'views');
 console.log('Resolved static path:', staticPath);
@@ -164,14 +190,14 @@ console.log('Resolved static path:', staticPath);
 // Serve static files with proper MIME types
 app.use(express.static(staticPath, {
     setHeaders: (res, filePath) => {
-        if (filePath.endsWith('.html')) {
-            res.setHeader('Content-Type', 'text/html');
+        if (filePath.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
         }
         if (filePath.endsWith('.js')) {
             res.setHeader('Content-Type', 'application/javascript');
         }
-        if (filePath.endsWith('.css')) {
-            res.setHeader('Content-Type', 'text/css');
+        if (filePath.endsWith('.html')) {
+            res.setHeader('Content-Type', 'text/html');
         }
     }
 }));

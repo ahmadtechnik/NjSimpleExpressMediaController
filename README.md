@@ -2,7 +2,9 @@
 
 A modern web-based media controller that allows you to control your computer's media playback and volume from any device on your local network. Perfect for when you want to adjust volume or change tracks without going to your computer.
 
-![Media Controller Interface](https://raw.githubusercontent.com/ahmadtechnik/NjSimpleExpressMediaController/main/docs/screenshot.png)
+<div align="center">
+  <img src="assets/screenshot.png" alt="Media Controller Interface" width="300">
+</div>
 
 ## Features
 
@@ -85,7 +87,11 @@ This will:
 ### Media Controls
 - **Play/Pause**: Toggle media playback
 - **Next/Previous**: Skip between tracks
-- **Volume Control**: Smooth volume adjustment with real-time preview
+- **Volume Control**: 
+  - Precise 5% increments for fine-tuned control
+  - Hold volume buttons for continuous adjustment
+  - Real-time volume display updates
+  - Smooth slider with 5% step intervals
 
 ### User Interface
 - Modern, glass-morphism design
@@ -93,6 +99,22 @@ This will:
 - Smooth animations and transitions
 - Real-time volume display
 - Touch-friendly controls
+- Compact QR code for easy mobile access
+- Full-height responsive design that adapts to any screen
+- Optimized for both portrait and landscape orientations
+
+### Network Features
+- QR code for instant mobile access
+- Minimal padding for efficient space usage
+- Displays local IP address for easy sharing
+- Works across all devices on local network
+
+### Mobile Optimizations
+- Touch-friendly button sizes
+- Continuous volume adjustment on touch devices
+- Landscape mode optimization
+- Proper viewport scaling
+- iOS Safari height fixes
 
 ## Development
 
@@ -107,11 +129,35 @@ The project uses several modern development tools and practices:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Feel free to:
+
+- Fork the repository
+- Create a feature branch
+- Submit a Pull Request
+- Open issues for bugs or feature requests
+- Suggest improvements
+
+Please make sure to update tests as appropriate and follow the existing code style.
 
 ## License
 
-This project is licensed under the ISC License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+This means you can:
+- ✅ Use the code commercially
+- ✅ Modify the code
+- ✅ Distribute the code
+- ✅ Use the code privately
+- ✅ Sublicense the code
+
+The only requirement is to include the original license and copyright notice in any copy of the software/source.
+
+## Author
+
+Ahmad Kouider - [@ahmadkouider](https://www.facebook.com/Ahmad.technik)
+
+---
+Made with ❤️ for the open source community
 
 ## Acknowledgments
 
