@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "dev": "nodemon",
+    "start:dev": "concurrently \"npm run build:watch\" \"npm run dev\""
   },
   "keywords": [],
   "author": "",
@@ -14,9 +18,15 @@
     "commander": "^9.4.0",
     "express": "^4.18.1",
     "loudness": "^0.4.1",
-    "robotjs": "^0.6.0"
+    "robotjs": "^0.6.0",
+    "typescript": "^3.9.10"
   },
   "bin": {
     "mcontroller": "bin/mcontroller.js"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2"
   }
 }

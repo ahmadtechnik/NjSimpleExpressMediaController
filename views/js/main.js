@@ -15,11 +15,22 @@ $(document).ready(() => {
     $('#v_down_button').on('click', () => {
         $.get('/v_down');
     });
-    $('#volumeChanger').on('input change', (t) => {
-        $('#volume_value').text(t.target.value);
-        $.get('/volume_set?v=' + t.target.value, {
+    
+    // Volume slider behavior
+    const volumeSlider = $('#volumeChanger');
+    const volumeDisplay = $('#volume_value');
+    
+    // Update display while sliding
+    volumeSlider.on('input', (e) => {
+        volumeDisplay.text(e.target.value);
+    });
+    
+    // Only send volume change request when mouse is released
+    volumeSlider.on('mouseup touchend', (e) => {
+        const newVolume = e.target.value;
+        $.get('/volume_set?v=' + newVolume, {
             data: {
-                volume: t.target.value
+                volume: newVolume
             }
         });
     });
